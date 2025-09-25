@@ -1,3 +1,52 @@
+/** @type {Employee[]} */
+const employeeList = [
+  { name: "John", position: "Manager", salary: 50000 },
+  { name: "John2", position: "Salesperson", salary: 70000 },
+];
+const tableBody = document.querySelector("#employee-table tbody");
+
+function createEmployeeRows() {
+  const employeeRows = employeeList.map((employee) => {
+    const newRow = document.createElement("tr");
+    for (const property in employee) {
+      const newCell = document.createElement("td");
+      newCell.textContent = employee[property];
+      newRow.appendChild(newCell);
+    }
+    return newRow;
+  });
+  tableBody.replaceChildren(...employeeRows);
+}
+createEmployeeRows();
+//DOM node for the form
+const addEmployeeForm = document.querySelector("#add-employee");
+const errMessage = document.querySelector("#error-msg");
+const successMsg = document.querySelector("#success-msg");
+// our even listener that will createa dn add the new employee form inputs
+addEmployeeForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(addEmployeeForm);
+  const name = formData.get("name");
+  const position = formData.get("position");
+  const salary = formData.get("salary");
+  if (!name || !position || !salary) {
+    alert("must fill in ");
+    errMessage.classList.remove("hiden");
+    return;
+  } else successMsg.classList.remove("hiden");
+  const newEmployee = {
+    name,
+    position,
+    salary,
+  };
+  employeeList.push(newEmployee);
+  createEmployeeRows();
+  successMsg.classList.remove("hiden");
+  addEmployeeForm.reset();
+  setTimeout(function () {
+    successMsg.classList.add("hiden");
+  }, 2000);
+});
 /**
  * @typedef Employee
  * @property {string}name - NAME OF EMPLOYEE
@@ -6,49 +55,43 @@
  *
  */
 
-/** @type {Employee[]} */
-const employeeList = [
-  { name: "John", position: "Manager", salary: 50000 },
-  { name: "John2", position: "Salesperson", salary: 70000 },
-];
+// // 1. Prompt the user for employee data as a comma separated string
+// // 2. Create an object of type employee for this data
+// // 3.Put the object  created in step 2 into our list of employees
+// // alert the user that employee was added succesful
 
-// 1. Prompt the user for employee data as a comma separated string
-// 2. Create an object of type employee for this data
-// 3.Put the object  created in step 2 into our list of employees
-// alert the user that employee was added succesful
+// // gloal variable that can be update to stop the loop[TO DO TONIGHT]
+// let userIsFinished = false;
+// while (!userIsFinished) {
+//   const newEmployeeData = prompt(
+//     "Enter Your name, Position and salary separate by commas:",
+//     "John Wayne, Sales, 65000"
+//   );
+//   if (newEmployeeData === null) {
+//     userIsFinished = true;
+//     continue;
+//   }
 
-// gloal variable that can be update to stop the loop[TO DO TONIGHT]
-let userIsFinished = false;
-while (!userIsFinished) {
-  const newEmployeeData = prompt(
-    "Enter Your name, Position and salary separate by commas:",
-    "John Wayne, Sales, 65000"
-  );
-  if (newEmployeeData === null) {
-    userIsFinished = true;
-    continue;
-  }
+//   //console.log(newEmployeeData);
+//   // split employee data by commas
+//   const employeeDataArray = newEmployeeData.split(",");
+//   //console.log(employeeDataArray);
+//   /**WE HAVE MOVED LINE 30 TO 35 INTO addEmplooyee function */
+//   // const newEmployee = {};
 
-  //console.log(newEmployeeData);
-  // split employee data by commas
-  const employeeDataArray = newEmployeeData.split(",");
-  //console.log(employeeDataArray);
-  /**WE HAVE MOVED LINE 30 TO 35 INTO addEmplooyee function */
-  // const newEmployee = {};
+//   // newEmployee.name = employeeDataArray[0].trim();
+//   // newEmployee.position = employeeDataArray[1].trim();
+//   // newEmployee.salary = Number(employeeDataArray[2].trim());
+//   // We could do the above three lines into one line below
+//   // const newEmployee = {name:employeeDataArray[0], position:employeeDataArray[1],
+//   //     salary: employeeDataArray[2]
+//   // }
 
-  // newEmployee.name = employeeDataArray[0].trim();
-  // newEmployee.position = employeeDataArray[1].trim();
-  // newEmployee.salary = Number(employeeDataArray[2].trim());
-  // We could do the above three lines into one line below
-  // const newEmployee = {name:employeeDataArray[0], position:employeeDataArray[1],
-  //     salary: employeeDataArray[2]
-  // }
-
-  //console.log(newEmployee);
-  // call the function below to create the new imployer
-  const newEmployee = createEmployee(employeeDataArray);
-  employeeList.push(newEmployee);
-}
+//   //console.log(newEmployee);
+//   // call the function below to create the new imployer
+//   const newEmployee = createEmployee(employeeDataArray);
+//   employeeList.push(newEmployee);
+// }
 //console.log(employeeList);
 /**
  *
