@@ -18,6 +18,20 @@ function createEmployeeRows() {
   tableBody.replaceChildren(...employeeRows);
 }
 createEmployeeRows();
+//DOM node for the form
+const addEmployeeForm = document.querySelector("#add-employee");
+// our even listener that will createa dn add the new employee form inputs
+addEmployeeForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(addEmployeeForm);
+  const newEmployee = {
+    name: formData.get("name"),
+    position: formData.get("position"),
+    salary: +formData.get("salary"),
+  };
+  employeeList.push(newEmployee);
+  createEmployeeRows();
+});
 /**
  * @typedef Employee
  * @property {string}name - NAME OF EMPLOYEE
