@@ -12,3 +12,16 @@ h2 {
 #employee-table tbody td {
   text-align: center;
 }
+#error-msg {
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+}
+.hiden {
+  display: none;
+}
+#success-msg {
+  color: green;
+  font-weight: bold;
+  font-size: 18px;
+}

@@ -20,17 +20,32 @@ function createEmployeeRows() {
 createEmployeeRows();
 //DOM node for the form
 const addEmployeeForm = document.querySelector("#add-employee");
+const errMessage = document.querySelector("#error-msg");
+const successMsg = document.querySelector("#success-msg");
 // our even listener that will createa dn add the new employee form inputs
 addEmployeeForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = new FormData(addEmployeeForm);
+  const name = formData.get("name");
+  const position = formData.get("position");
+  const salary = formData.get("salary");
+  if (!name || !position || !salary) {
+    alert("must fill in ");
+    errMessage.classList.remove("hiden");
+    return;
+  } else successMsg.classList.remove("hiden");
   const newEmployee = {
-    name: formData.get("name"),
-    position: formData.get("position"),
-    salary: +formData.get("salary"),
+    name,
+    position,
+    salary,
   };
   employeeList.push(newEmployee);
   createEmployeeRows();
+  successMsg.classList.remove("hiden");
+  addEmployeeForm.reset();
+  setTimeout(function () {
+    successMsg.classList.add("hiden");
+  }, 2000);
 });
 /**
  * @typedef Employee
