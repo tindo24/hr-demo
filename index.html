@@ -3,10 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./script.js" defer></script>
     <title>HR APP</title>
   </head>
   <body>
     <h1>HR APP</h1>
-    <script src="./script.js"></script>
+    <h2>Add an employee Here</h2>
+    <form id="add-employee">
+      <label>
+        Name:
+        <input type="text" name="name" />
+      </label>
+      <label>
+        Position:
+        <input type="text" name="position" />
+      </label>
+      <label>
+        Salary:
+        <input type="text" name="salary" />
+      </label>
+      <input type="submit" value="Add Employee" />
+    </form>
   </body>
 </html>
