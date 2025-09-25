@@ -4,11 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
     <title>HR APP</title>
   </head>
   <body>
     <h1>HR APP</h1>
     <h2>Add an employee Here</h2>
+    <table id="employee-table">
+      <thead>
+        <tr colspan="3" class="header-row-first">
+          <th>Current Employees</th>
+        </tr>
+        <tr class="header-row-second">
+          <th>Name</th>
+          <th>Position</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--  our rows will be dynamically injected by the js-->
+      </tbody>
+    </table>
     <form id="add-employee">
       <label>
         Name:
